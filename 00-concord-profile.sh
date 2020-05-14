@@ -11,8 +11,10 @@ then
 else
   cp ${DIR}/concord/templates/profile.template ${concord_def_profile_file}
 fi
-rm ${CONCORD_DOTDIR}/profile
-ln -s ${concord_def_profile_file} ${CONCORD_DOTDIR}/profile
+if [ -f ${CONCORD_DOTDIR}/profile ]; then
+  rm ${CONCORD_DOTDIR}/profile
+  ln -s ${concord_def_profile_file} ${CONCORD_DOTDIR}/profile
+fi
 
 # Main Concord Started script extract for builder projects
 cp ${DIR}/concord/concord.bash ${CONCORD_DOTDIR}
